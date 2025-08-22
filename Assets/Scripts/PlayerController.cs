@@ -17,7 +17,6 @@ public class PlayerController : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        animator.SetBool("IsGrounded", true);
     }
 
     void Update()
@@ -25,13 +24,15 @@ public class PlayerController : MonoBehaviour
         // Ground check using an overlap circle at the groundCheckPoint position
         isGrounded = Physics2D.OverlapCircle(groundCheckPoint.position, groundCheckRadius, groundLayer);
 
+        // Always update the animator with the current grounded state
+        animator.SetBool("IsGrounded", isGrounded);
         // Jump input: Spacebar or right mouse button
         if (isGrounded && (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)))
         {
-            animator.SetBool("IsGrounded", false);
             animator.SetTrigger("Jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // Reset Y velocity
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
         }
+
     }
 }
