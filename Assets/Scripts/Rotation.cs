@@ -1,16 +1,10 @@
 using UnityEngine;
 
 public class Rotation : MonoBehaviour
-{
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+{ 
+    public float RotationSpeed = 50.0f;
+    private void Update()
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        transform.Rotate(Vector3.forward * RotationSpeed * Time.deltaTime);
     }
 }
