@@ -7,6 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundCheckRadius = 0.1f;
     [SerializeField] private Transform groundCheckPoint;
+    [SerializeField] private GameObject jumpParticlePrefab;
+
 
     private Animator animator;
 
@@ -32,6 +34,11 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("Jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // Reset Y velocity
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+        }
+        // Instantiate particle effect at the player's feet
+        if (jumpParticlePrefab != null)
+        {
+            Instantiate(jumpParticlePrefab, groundCheckPoint.position, Quaternion.identity);
         }
 
     }
