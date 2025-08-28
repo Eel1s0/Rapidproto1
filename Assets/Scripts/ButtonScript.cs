@@ -5,7 +5,7 @@ public class ButtonScript : MonoBehaviour
 {
     public void Restart()
     {
-        SceneManager.LoadScene("Timo");
+        SceneManager.LoadScene("SampleScene");
         Time.timeScale = 1.0f;
     }
     public void Menu()
@@ -14,7 +14,8 @@ public class ButtonScript : MonoBehaviour
     }
     public void Game()
     {
-        SceneManager.LoadScene("Timo");
+        SceneManager.LoadScene("SampleScene");
+        Time.timeScale = 1.0f;
     }
     public void Quit()
     {
