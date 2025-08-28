@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class PlayerController : MonoBehaviour
@@ -7,18 +8,19 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private LayerMask groundLayer;
     [SerializeField] private float groundCheckRadius = 0.1f;
     [SerializeField] private Transform groundCheckPoint;
-    [SerializeField] private GameObject jumpParticlePrefab;
+    [SerializeField] private AudioClip jumpClip;
 
 
     private Animator animator;
-
     private Rigidbody2D rb;
+    private AudioSource audioSource;
     private bool isGrounded;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
     }
 
     void Update()
@@ -34,12 +36,14 @@ public class PlayerController : MonoBehaviour
             animator.SetTrigger("Jump");
             rb.linearVelocity = new Vector2(rb.linearVelocity.x, 0f); // Reset Y velocity
             rb.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
+
+            // Play jump sound
+            if (jumpClip != null)
+            {
+                audioSource.PlayOneShot(jumpClip);
+            }
         }
-        // Instantiate particle effect at the player's feet
-        if (jumpParticlePrefab != null)
-        {
-            Instantiate(jumpParticlePrefab, groundCheckPoint.position, Quaternion.identity);
-        }
+
 
     }
 }
