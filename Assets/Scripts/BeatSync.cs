@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement; // Add this
 
 public class BeatSync : MonoBehaviour
 {
@@ -58,12 +59,13 @@ public class BeatSync : MonoBehaviour
                 beatIndicator.enabled = false; // Hide indicator
         }
 
-        // Optionally, reset canPressE if the player missed the beat window
-        if (musicTime > nextBeatTime - (beatInterval * 0.5f))
+        // If the player missed the beat window, trigger Game Over
+        if (canPressE && (musicTime > nextBeatTime - (beatInterval * 0.5f)))
         {
             canPressE = false;
             if (beatIndicator != null)
                 beatIndicator.enabled = false; // Hide indicator
+            SceneManager.LoadScene("GameOver"); // Load GameOver scene
         }
     }
 }
