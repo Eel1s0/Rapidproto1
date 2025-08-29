@@ -23,7 +23,7 @@ public class ButtonScript : MonoBehaviour
         attempt++;
         PlayerPrefs.SetInt("Attempts", attempt);
         PlayerPrefs.Save();
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainScene");
         Time.timeScale = 1.0f;
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -40,7 +40,7 @@ public class ButtonScript : MonoBehaviour
     public void Game()
     {
         PlayerPrefs.SetInt("Attempts", 0);
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("MainScene");
         Time.timeScale = 1.0f;
     }
     public void Quit()
