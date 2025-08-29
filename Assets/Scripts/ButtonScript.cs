@@ -54,6 +54,7 @@ public class ButtonScript : MonoBehaviour
     }
     private void OnDestroy()
     {
+
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
 }
