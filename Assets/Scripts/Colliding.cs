@@ -17,7 +17,7 @@ public class Colliding : MonoBehaviour
     {
         if (collision.CompareTag("Bush"))
         {
-            Debug.Log("Hit the bush.");
+            Debug.Log("Hit object.");
             Time.timeScale = 0f;
             SceneManager.LoadScene("GameOver");
         }
